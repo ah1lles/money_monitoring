@@ -61,8 +61,8 @@
 
     userMarks.list().then(
       function(response) {
-        vm.marks_list = response || {};
-        vm.searchParams.marksList = vm.marks_list;
+        vm.marks_list               = response || {};
+        vm.searchParams.marksList   = vm.marks_list;
       },
       function() {
         flashMethods.alertError('Извините, произошла ошибка!');
