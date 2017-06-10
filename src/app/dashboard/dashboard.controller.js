@@ -58,28 +58,6 @@
       }
     );
 
-    // vm.searchFilter = function(searchTerm, ) {
-    //   return function(item) {
-    //     if (!searchTerm) return item;
-    //     var result = [];
-    //     _.each(item, function(value, key) {
-    //       if (item.hasOwnProperty(key)) {
-    //         if (key === 'created_at') {
-    //           var date = moment(value).format('MMMM YYYY');
-    //           console.log(date, date.indexOf(searchTerm));
-    //           if (~date.indexOf(searchTerm))
-    //             result.push(key)
-    //         } else if () {
-
-    //         }
-    //       }
-          
-    //     });
-    //     console.log(result)
-    //     return  result.length;
-    //   }
-    // }
-
     vm.apply_sort = function(columnName) {
       if (vm.current_sort.name !== columnName)
         vm.current_sort.type   = '';
