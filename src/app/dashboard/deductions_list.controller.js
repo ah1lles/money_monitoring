@@ -144,6 +144,7 @@
     vm.edit_deduction = function(deductionId) {
       $state.go('dashboard.deduction', {recordId: $stateParams.recordId, deductionId: deductionId});
     }
+
   }
 
 })();
