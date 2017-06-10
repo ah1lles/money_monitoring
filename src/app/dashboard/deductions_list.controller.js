@@ -5,9 +5,9 @@
     .module('moneyMonitoring')
     .controller('DeductionsListController', DeductionsListController);
 
-  DeductionsListController.$inject = ['$scope', '$state', '$stateParams', '$mdDialog', 'dashboardApi', 'flashMethods', 'userMarks', 'moment',  'toArray', '_'];
+  DeductionsListController.$inject = ['$scope', '$state', '$stateParams', '$mdDialog', 'dashboardApi', 'flashMethods', 'userMarks', 'moment',  'toArray', 'defaultDateFormat', '_'];
 
-  function DeductionsListController($scope, $state, $stateParams, $mdDialog, dashboardApi, flashMethods, userMarks, moment, toArray, _) {
+  function DeductionsListController($scope, $state, $stateParams, $mdDialog, dashboardApi, flashMethods, userMarks, moment, toArray, defaultDateFormat, _) {
 
     var
       vm = this;
@@ -43,6 +43,12 @@
       }
     ];
 
+    vm.searchParams = {
+      searchTerm: '',
+      marksList: {},
+      format: defaultDateFormat
+    };
+
     dashboardApi.getRecord($stateParams.recordId).then(
       function(response) {
         vm.list =  toArray.create(response.deductions);
@@ -56,6 +62,7 @@
     userMarks.list().then(
       function(response) {
         vm.marks_list = response || {};
+        vm.searchParams.marksList = vm.marks_list;
       },
       function() {
         flashMethods.alertError('Извините, произошла ошибка!');
@@ -96,6 +103,34 @@
           );
         }
       );
+    }
+
+    vm.searchFilter = function(params) {
+      return function(item) {
+        if (!params.searchTerm) return true;
+        var result = [], mark, m, date;
+
+        _.each(item, function(value, key) {
+          if (key === 'mark') {
+            mark = params.marksList[value];
+            if (mark) {
+              if (~mark.name.toLowerCase().indexOf(params.searchTerm.toLowerCase()))
+                result.push(key);
+            }
+          } else if (key === 'created_at') {
+            m     = moment(value),
+            date  = m.isValid() ? m.format(params.format) : value;
+
+            if (~date.indexOf(params.searchTerm))
+              result.push(key);
+          } else {
+            if (~value.toString().indexOf(params.searchTerm))
+              result.push(key);
+          }
+        });
+
+        return result.length;
+      }
     }
 
     vm.back = function() {

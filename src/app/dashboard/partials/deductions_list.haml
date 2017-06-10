@@ -5,7 +5,7 @@
       %md-input-container{md-no-float flex: "60", class: "md-icon-left md-block"}
         %md-icon
           %i{class: "fa fa-search"}
-        %input{type: "text", placeholder: "Поиск", ng-model: "deductions_list.search_term"}
+        %input{type: "text", placeholder: "Поиск", ng-model: "deductions_list.searchParams.searchTerm"}
       .filter-content{flex: "35"}
         %md-input-container{md-no-float class: "md-block"}
           %md-select{ng-model: "deductions_list.search_term", placeholder: "Фильтр по меткам"}
@@ -24,7 +24,7 @@
                 %i{class: "fa fa-sort-desc"}
             .table-cell
         .table-body
-          .table-row{ng-repeat: "(key, value) in deductions_list.list | orderBy: deductions_list.current_sort.column | filter: deductions_list.search_term"}
+          .table-row{ng-repeat: "(key, value) in deductions_list.list | orderBy: deductions_list.current_sort.column | filter: deductions_list.searchFilter(deductions_list.searchParams)"}
             .table-cell{ng-repeat: "column in deductions_list.columns", data-type: "{{column.type}}"}
               %span{ng-bind: "(column.name === 'mark' ? (deductions_list.marks_list[value[column.name]].name) : value[column.name]) | dateFilter: column"}
             .table-cell.action-block
