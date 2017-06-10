@@ -1,0 +1,8 @@
+.auth-wrap{flex layout: "column", layout-align: "center center"}
+  .logo
+    %a{ui-sref: "home"} Money Monitoring
+  .done
+    .md-headline{ng-bind: "sign_up.title"}
+    .md-subhead{ng-bind: "sign_up.content"}
+    .button-wrap{ng-if: "sign_up.verify_status"}
+      %md-button{ui-sref: "sign_in", class: "md-primary md-raised"} Войти

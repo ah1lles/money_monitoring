@@ -1,0 +1,28 @@
+%md-card{class: "md-whiteframe-2dp"}
+  %md-card-header
+    .md-headline{ng-bind: "deduction.title"}
+  %md-card-content
+    .max-width
+      %form{name: "deduction.deductionForm", ng-submit: "deduction.save_deduction()", class: "last-item-no-margin"}
+        %md-input-container{class: "md-block"}
+          %label Сумма вычета
+          %input{required name: "amount", min: "0", type: "number", ng-model: "deduction.deduction.amount"}
+          %div{ng-messages: "deduction.deductionForm.amount.$error"}
+            %div{ng-message: "required"} Поле нужно заполнить
+            %div{ng-message: "min"} Не может быть отрицательным
+        %md-input-container{class: "md-block"}
+          %label Метка
+          %md-select{ng-model: "deduction.deduction.mark"}
+            %md-option{ng-value: "key", ng-repeat: "(key, mark) in deduction.marks_list"}
+              %span{ng-bind: "mark.name"}
+          %span{class: "errors-reserve"}
+        %md-input-container{class: "md-block"}
+          %label Описание
+          %textarea{ng-model: "deduction.deduction.description"}
+        .datepicker-input-container
+          %md-datepicker{md-open-on-focus class: "hide-icon", ng-model: "deduction.picker_date", md-min-date: "deduction.picker_min_date", md-max-date: "deduction.picker_max_date", md-placeholder: "Выбрать дату", ng-change: "deduction.set_deduction_date()"}
+        .button-holder
+          %md-button{type: "submit", class: "md-raised md-primary", aria-label: "save deduction"}
+            %span{ng-bind: "deduction.submit_btn"}
+          %md-button{class: "md-raised", ng-click: "deduction.back()", aria-label: "back"} Назад
+  %md-card-footer

@@ -1,0 +1,692 @@
+/**
+ *  Do not remove the comment below. It's the markers used by wiredep to inject
+ *  sass dependencies when defined in the bower.json of your dependencies
+ */
+// bower:scss
+// endbower
+
+@import url(http://fonts.googleapis.com/css?family=Roboto+Slab:400,700|Roboto:400,700,700italic,400italic);
+
+$fa-font-path: "../../bower_components/font-awesome/fonts";
+@import "../../bower_components/font-awesome/scss/font-awesome.scss";
+
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url(../../bower_components/material-design-iconfont/iconfont/MaterialIcons-Regular.eot); /* For IE6-8 */
+  src: local('Material Icons'),
+       local('MaterialIcons-Regular'),
+       url(../../bower_components/material-design-iconfont/iconfont/MaterialIcons-Regular.woff2) format('woff2'),
+       url(../../bower_components/material-design-iconfont/iconfont/MaterialIcons-Regular.woff) format('woff'),
+       url(../../bower_components/material-design-iconfont/iconfont/MaterialIcons-Regular.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'Kurale-Regular';
+    src: url('../assets/fonts/Kurale-Regular.eot');
+    src: url('../assets/fonts/Kurale-Regular.eot') format('embedded-opentype'),
+         url('../assets/fonts/Kurale-Regular.woff2') format('woff2'),
+         url('../assets/fonts/Kurale-Regular.woff') format('woff'),
+         url('../assets/fonts/Kurale-Regular.ttf') format('truetype'),
+         url('../assets/fonts/Kurale-Regular.svg#Kurale-Regular') format('svg');
+}
+
+@font-face {
+    font-family: 'opensans';
+    src: url('../assets/fonts/opensans.eot');
+    src: url('../assets/fonts/opensans.eot') format('embedded-opentype'),
+         url('../assets/fonts/opensans.woff2') format('woff2'),
+         url('../assets/fonts/opensans.woff') format('woff'),
+         url('../assets/fonts/opensans.ttf') format('truetype'),
+         url('../assets/fonts/opensans.svg#opensans') format('svg');
+}
+
+
+$OpenSans: 'opensans', sans-serif;
+$Kurale: 'Kurale-Regular', sans-serif;
+
+
+
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;  /* Preferred icon size */
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}
+
+html {
+  // font-family: 'Roboto Slab', serif;
+}
+body {
+    font-family: $OpenSans;
+    font-size: 14px;
+}
+
+[layout=row] {
+  flex-direction: row;
+}
+
+
+.site-wrapper {
+    height: 100%;
+}
+.main-content {
+    position: relative;
+}
+.main-md-content {
+    background: #eee;
+}
+.no-padding {
+    padding-left: 0;
+    padding-right: 0;
+}
+.auth-wrap {
+    background: #fff;
+
+    .button-wrap {
+        margin: 30px 0;
+    }
+    .md-display-1 {
+        font-size: 30px;
+        text-transform: uppercase;
+    }
+    h2.md-display-1 {
+        text-transform: none;
+    }
+    .max-width {
+        max-width: 500px;
+    }
+}
+.button-wrap {
+    text-align: center;
+
+    .md-button {
+        vertical-align: middle;
+    }
+}
+md-input-container {
+    .md-input,
+    md-select {
+        font-size: 16px;
+    }
+}
+.last-item-no-margin {
+    md-input-container {
+
+        &:last-of-type {
+            margin-bottom: 0;
+        }
+    }
+}
+label {
+    font-size: 16px;
+}
+.button-holder {
+    padding-top: 18px;
+
+    .md-button {
+        &:first-of-type {
+            margin-left: 0;
+        }
+    }
+}
+
+
+.mb-0 {
+    margin-bottom: 0;
+}
+
+.forgot_password {
+    text-decoration: none;
+    color: #555;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.form-wrap {
+    max-width: 450px;
+    width: 100%;
+    margin-top: 25px;
+}
+.max-width {
+    max-width: 450px;
+}
+
+.send-email-btn {
+    margin-left: 5px;
+    font-weight: 600;
+    text-decoration: underline;
+    cursor: pointer;
+
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+.logo {
+    font-family: $Kurale;
+    font-size: 50px;
+    line-height: 56px;
+    margin-bottom: 50px;
+
+    a {
+        text-decoration: none;
+        color: #333;
+
+        &:hover,
+        &:focus {
+            color: #333;
+            outline: 0;
+        }
+    }
+    &.small {
+        font-family: $Kurale;
+        font-size: 20px;
+        margin-bottom: 0;
+
+        a {
+            color: #fff;
+
+            &:hover,
+            &:focus {
+                color: #fff;
+            }
+        }
+    }
+}
+
+.main-header {
+
+    .md-button {
+        vertical-align: middle;
+    }
+    .fa {
+        font-size: 20px;
+        line-height: 25px;
+    }
+    .right-side {
+        text-align: right;
+    }
+    .btn-sandwich {
+        padding: 10px;
+        transition: all 0.5s ease;
+        color: #444;
+
+        span {
+            display: block;
+            height: 2px;
+            border-radius: 4px;
+            background: #fff;
+            margin-bottom: 4px;
+            transition: all 0.3s ease 0.2s;
+
+            &:last-of-type {
+                margin-bottom: 0;
+            }
+        }
+        &.sidebar-open {
+            transform: rotateZ(360deg);
+
+            .top-part {
+                transform: rotateZ(45deg) translate(4px, 5px);
+            }
+            .bottom-part {
+                transform: rotateZ(-45deg) translate(4px, -5px);
+            }
+            .middle-part {
+                opacity: 0;
+            }
+        }
+    }
+}
+
+
+// Preloader
+.la-anim-10 {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 300px;
+    z-index: 100;
+    background: #ED4E6E;
+    box-shadow: 0 0 12px #444;
+    transition: transform 0.3s;
+    transform: translateX(100%) translateY(-100%) rotate(45deg);
+    pointer-events: none;
+
+    &.la-animate {
+        transform: translateX(50%) translateY(-50%) rotate(45deg);
+    }
+    &:before,
+    &:after {
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        display: block;
+        border: 5px solid #fff;
+        border-radius: 50%;
+        content: '';
+    }
+    &:after {
+        bottom: 50px;
+        margin-left: -20px;
+        width: 40px;
+        height: 40px;
+        border-top-color: #bb344f;
+        border-bottom-color: #bb344f;
+        -webkit-animation: rotation 1s linear infinite;
+        animation: rotation 1s linear infinite;
+    }
+    &:before {
+        margin-left: -40px;
+        width: 80px;
+        height: 80px;
+        border-right-color: #bb344f;
+        border-left-color: #bb344f;
+        -webkit-animation: rotation 3s linear infinite;
+        animation: rotation 3s linear infinite;
+    }
+}
+
+/* Loading circle idea from http://codepen.io/Metty/details/lgJck */
+
+@-webkit-keyframes rotation {
+    0%      { -webkit-transform: rotate(0deg); }
+    50%     { -webkit-transform: rotate(180deg); }
+    100%    { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes rotation {
+    0%      { transform: rotate(0deg); }
+    50%     { transform: rotate(180deg); }
+    100%    { transform: rotate(360deg); }
+}
+
+
+
+// Login animation
+.site-wrapper {
+
+    .cd-loading-bar {
+        position: fixed;
+        z-index: 300;
+        left: 50%;
+        top: 50%;
+        height: 2px;
+        width: 90%;
+        background-color: #4089a6;
+        will-change: transform;
+        visibility: hidden;
+        transition: visibility 0s 0.4s, transform 0.4s 0s ease-in;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        transform: translateZ(0);
+        transform: translateX(-50%) translateY(-50%);
+
+        &:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            background-color: #000;
+            will-change: transform;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            transform: translateZ(0);
+            transform: scaleX(0);
+            transform-origin: left center;
+        }
+    }
+    .cd-cover-layer {
+        position: fixed;
+        z-index: 200;
+        left: 50%;
+        top: 50%;
+        bottom: auto;
+        right: auto;
+        transform: translateX(-50%) translateY(-50%);
+        height: calc(100% - 20px);
+        width: calc(100% - 20px);
+        opacity: 0;
+        will-change: transform, opacity;
+        visibility: hidden;
+        background-color: #4089a6;
+        transition: opacity 0.4s 0.4s, visibility 0s 0.8s;
+    }
+    .cd-cover-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #4089a6;
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    &:before,
+    &:after {
+        content: '';
+        height: 50vh;
+        width: 100%;
+        position: fixed;
+        left: 0;
+        background-color: #ffffff;
+        z-index: 250;
+        will-change: transform;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        transition: transform 0.4s 0.4s;
+    }
+    &:before {
+        top: 0;
+        transform: translateY(-100%);
+    }
+    &:after {
+        bottom: 0;
+        transform: translateY(100%);
+    }
+    &.page-is-changing {
+
+        &:before,
+        &:after {
+            transform: translateY(0);
+            transition: transform 0.4s 0s;
+        }
+        .cd-loading-bar {
+            visibility: visible;
+            transform: translateX(-50%) translateY(-50%) scaleX(0.3);
+            transition: visibility 0s 0.3s, transform 0.4s 0.4s;
+
+            &:before {
+                background-color: #000;
+                transform: scaleX(1);
+                transition: transform 0.8s 0.8s ease-in;
+            }
+        }
+        .cd-cover-layer {
+            background-color: #283040;
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.3s 0s, visibility 0s 0s;
+        }
+        .cd-cover-overlay {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+}
+
+
+.done {
+    text-align: center;
+    max-width: 550px;
+
+    .md-headline {
+        margin-bottom: 20px;
+    }
+}
+
+.align-center {
+    text-align: center;
+}
+
+md-toast {
+    z-index: 90;
+
+    .md-toast-content {
+        color: #fff;
+    }
+    &.success {
+        .md-toast-content {
+          background: rgba(0, 128, 0, 0.6);
+        }
+    }
+    &.error {
+        .md-toast-content {
+            background: rgba(255, 0, 0, 0.6);
+        }
+    }
+    &.info {
+        .md-toast-content {
+            background: #ABD036;
+        }
+    }
+}
+
+@media (min-width: 960px) {
+    md-toast.md-top {
+        top: 72px;
+    }
+}
+
+@media (min-width: 960px) {
+    md-toast.md-right {
+        right: 8px;
+    }
+}
+
+
+
+md-dialog {
+    min-width: 320px;
+}
+
+
+
+
+.main-table {
+    display: table;
+    border-collapse: collapse;
+    width: 100%;
+
+    .table-head {
+        display: table-header-group;
+
+        .table-row {
+            &:hover {
+                background: transparent;
+            }
+        }
+        .table-cell {
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+    }
+    .table-body {
+        display: table-row-group;
+    }
+    .table-row {
+        display: table-row;
+
+        + .table-row {
+            border-top: 1px solid rgba(216, 216, 216, 0.9);
+        }
+        &:last-child {
+            border-bottom: 1px solid rgba(216, 216, 216, 0.9);
+        }
+        &:hover {
+            background: #fafafa;
+        }
+    }
+    .table-cell {
+        display: table-cell;
+        padding: 5px 25px;
+        max-width: 500px;
+
+        .md-icon-button {
+
+            .fa {
+                font-size: 20px;
+                color: #1088DE;
+                vertical-align: middle;
+            }
+        }
+        &[data-type="integer"] {
+            text-align: right;
+        }
+        &.action-block {
+            text-align: right;
+        }
+    }
+}
+.sort_btn {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+
+    &:focus {
+        outline: none;
+    }
+    .fa {
+        position: absolute;
+        left: 0;
+        right: 0;
+        color: #505050;
+        font-size: 10px;
+    }
+    .fa-sort-asc {
+        top: 4px;
+    }
+    .fa-sort-desc {
+        bottom: 4px;
+    }
+    &.desc {
+        .fa-sort-asc {
+            color: #d4d4d4;
+        }
+        .fa-sort-desc {
+            color: #000;
+        }
+    }
+    &.asc {
+        .fa-sort-asc {
+            color: #000;
+        }
+        .fa-sort-desc {
+            color: #d4d4d4;
+        }
+    }
+}
+.search-block {
+    width: 100%;
+    max-width: 430px;
+
+    &.filter-marks {
+
+        .errors-reserve {
+            height: 1px;
+        }
+    }
+    md-icon {
+        text-align: center;
+        color: #a9a9a9;
+    }
+    input {
+        color: #333;
+        padding-right: 20px;
+
+        &::-webkit-input-placeholder {color: rgba(0,0,0,0.26)}
+        &::-moz-placeholder {color: rgba(0,0,0,0.26)}
+        &:-ms-input-placeholder {color: rgba(0,0,0,0.26)}
+        &:-moz-placeholder {color: rgba(0,0,0,0.26)}
+    }
+    .fa {
+        font-size: 18px;
+        line-height: 22px;
+        vertical-align: bottom;
+    }
+    md-input-container {
+        margin: 0;
+
+        .md-errors-spacer {
+            min-height: 1px;
+        }
+        &.md-input-has-value {
+            input {
+                color: #000;
+            }
+        }
+    }
+}
+
+
+
+
+.errors-reserve {
+    float: right;
+    height: 30px;
+}
+
+
+
+
+md-datepicker {
+
+    &.hide-icon {
+        .md-datepicker-button {
+            display: none;
+        }
+        .md-datepicker-input-container {
+            margin-left: 0;
+        }
+        .md-datepicker-input {
+            font-size: 16px;
+
+            &::-webkit-input-placeholder {color: rgba(0,0,0,0.26)}
+            &::-moz-placeholder {color: rgba(0,0,0,0.26)}
+            &:-ms-input-placeholder {color: rgba(0,0,0,0.26)}
+            &:-moz-placeholder {color: rgba(0,0,0,0.26)}
+        }
+    }
+    .md-datepicker-input-container {
+        width: 100%;
+    }
+}
+.datepicker-input-container {
+    position: relative;
+    padding: 2px;
+    margin: 18px 0;
+    vertical-align: middle;
+}
+
+
+
+
+/**
+ *  Do not remove the comment below. It's the markers used by gulp-inject to inject
+ *  all your sass files automatically
+ */
+// injector
+// endinjector

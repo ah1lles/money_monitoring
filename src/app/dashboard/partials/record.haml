@@ -1,0 +1,31 @@
+%md-card{class: "md-whiteframe-2dp"}
+  %md-card-header
+    .md-headline{ng-bind: "record.title"}
+  %md-card-content
+    .max-width
+      %form{name: "record.recordForm", class: "last-item-no-margin"}
+        %md-input-container{class: "md-block"}
+          %label Введите сумму
+          %input{required name: "total", type: "number", ng-model: "record.new_record.total", ng-disabled: "record.add_to_total"}
+          %div{ng-messages: "record.recordForm.total.$error"}
+            %div{ng-message: "required"} Поле нужно заполнить
+        %md-input-container{class: "md-block", ng-if: "record.add_total_input"}
+          %label Или введите значение, на которое нужно увеличить
+          %input{type: "number", ng-model: "record.add_to_total", ng-change: "record.update_total()"}
+        %md-input-container{class: "md-block"}
+          %label Месяц
+          %md-select{ng-model: "record.new_record.month"}
+            %md-option{ng-value: "month", ng-repeat: "month in record.months"}
+              %span{ng-bind: "month"}
+          %span{class: "errors-reserve"}
+        %md-input-container{class: "md-block"}
+          %label Год
+          %md-select{ng-model: "record.new_record.year"}
+            %md-option{ng-value: "year", ng-repeat: "year in record.years"}
+              %span{ng-bind: "year"}
+          %span{class: "errors-reserve"}
+  %md-card-footer
+    %md-button{class: "md-raised md-primary", ng-click: "record.save_record($event)", aria-label: "save record"}
+      %span{ng-bind: "record.submit_btn"}
+    %md-button{class: "md-raised", ng-click: "record.back()", aria-label: "back"} Назад
+

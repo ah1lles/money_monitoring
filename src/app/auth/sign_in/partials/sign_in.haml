@@ -1,0 +1,26 @@
+.auth-wrap{flex layout: "column", layout-align: "center center"}
+  .logo
+    %a{ui-sref: "home"} Money Monitoring
+  %h2{class: "md-display-1"} Вход
+  .form-wrap
+    %form{name: "sign_in.signInForm", ng-submit: "sign_in.login()"}
+      %md-input-container{class: "md-block"}
+        %label Email
+        %input{required input-errors pattern: "{{sign_in.regExpEmail}}", type: "email", name: "email", ng-model: "sign_in.user.email", autofocus: "autofocus"}
+        %div{ng-messages: "sign_in.signInForm.email.$error"}
+          %div{ng-message: "pattern"} Не корректный email адрес.
+          %div{ng-message: "email"}
+            %span{ng-bind: "sign_in.errors.errors.email"}
+            %a{class: "send-email-btn", ng-click: "sign_in.send_email()", ng-if: "sign_in.send_again"}
+              Отправить еще раз
+      %md-input-container{class: "md-block mb-0"}
+        %label Пароль
+        %input{required input-errors type: "password", name: "password", ng-model: "sign_in.user.password"}
+        %div{ng-messages: "sign_in.signInForm.password.$error"}
+          %div{ng-message: "password"}
+            %span{ng-bind: "sign_in.errors.errors.password"}
+      .forgot-password-btn
+        %a{ui-sref: "confirm_email", class: "forgot_password"} Забыли пароль?
+      .button-wrap
+        %md-button{ui-sref: "home", class: "md-raised"} Назад
+        %md-button{type: "submit", class: "md-primary md-raised"} Вход

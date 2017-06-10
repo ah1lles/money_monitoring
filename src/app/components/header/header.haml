@@ -1,0 +1,16 @@
+%md-toolbar{class: "main-header"}
+  .md-toolbar-tools
+    %div{flex class: "left-side"}
+      %md-button{class: "md-icon-button btn-sandwich", aria-label: "menu", ng-click: "toggle()", ng-class: "{'sidebar-open': isOpen()}"}
+        %span{class: "top-part"}
+        %span{class: "middle-part"}
+        %span{class: "bottom-part"}
+    %div{flex class: "senter-side align-center"}
+      .logo.small
+        %a{ui-sref: "home"} Money Monitoring
+    %div{flex class: "right-side"}
+      .user-name{ng-bind: "header.user_name"}
+      %md-button{class: "md-icon-button", aria-label: "settings", ui-sref: "profile_settings"}
+        %i{class: "fa fa-cog"}
+      %md-button{class: "md-icon-button", aria-label: "logout", ui-sref: "logout"}
+        %i{class: "fa fa-sign-out"}

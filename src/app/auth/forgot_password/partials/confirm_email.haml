@@ -1,0 +1,17 @@
+.auth-wrap{flex layout: "column", layout-align: "center center"}
+  .logo
+    %a{ui-sref: "home"} Money Monitoring
+  %h2{class: "md-display-1"} Восстановление пароля
+  .md-subhead.align-center.max-width Введите ваш email адрес. Вам будет отправлено письмо с дальнейшими инструкциями.
+  .form-wrap
+    %form{name: "forgot_password.confirmEmailForm", ng-submit: "forgot_password.confirm_email()"}
+      %md-input-container{class: "md-block"}
+        %label Email
+        %input{required input-errors pattern: "{{forgot_password.regExpEmail}}", type: "email", name: "email", ng-model: "forgot_password.user.email", autofocus: "autofocus"}
+        %div{ng-messages: "forgot_password.confirmEmailForm.email.$error"}
+          %div{ng-message: "pattern"} Не корректный email адрес.
+          %div{ng-message: "email"}
+            %span{ng-bind: "forgot_password.errors.errors.email"}
+      .button-wrap
+        %md-button{ui-sref: "home", class: "md-raised"} Назад
+        %md-button{type: "submit", class: "md-primary md-raised"} Продолжить

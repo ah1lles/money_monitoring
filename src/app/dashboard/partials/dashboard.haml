@@ -1,0 +1,38 @@
+.view-content
+  %ui-view
+    %md-card{class: "md-whiteframe-2dp"}
+      %md-card-header{layout:"row", layout-align: "space-between center"}
+        .md-headline Главная
+        .search-block
+          %md-input-container{md-no-float class: "md-icon-left md-block"}
+            %md-icon
+              %i{class: "fa fa-search"}
+            %input{type: "text", placeholder: "Поиск", ng-model: "dashboard.search_term"}
+      %md-card-content.no-padding
+        .table-wrap
+          .main-table
+            .table-head
+              .table-row
+                .table-cell{ng-repeat: "column in dashboard.columns", data-type: "{{column.type}}"}
+                  %span{ng-bind: "column.label"}
+                  %span{ng-if: "column.sort", class: "sort_btn", ng-click: "dashboard.apply_sort(column.name)", ng-class: "{'asc': dashboard.current_sort.type === 'asc' && dashboard.current_sort.name === column.name, 'desc': dashboard.current_sort.type === 'desc' && dashboard.current_sort.name === column.name}"}
+                    %i{class: "fa fa-sort-asc"}
+                    %i{class: "fa fa-sort-desc"}
+                .table-cell
+            .table-body
+              .table-row{dir-paginate: "(key, value) in dashboard.list | orderBy: dashboard.current_sort.column | filter: dashboard.search_term | itemsPerPage: dashboard.items_per_page"}
+                .table-cell{ng-repeat: "column in dashboard.columns", data-type: "{{column.type}}"}
+                  %span{ng-bind: "value[column.name] | dateFilter: column"}
+                .table-cell.action-block
+                  %md-button{class: "md-icon-button", ng-click: "dashboard.edit_record(value.id)", aria-label: "edit record"} 
+                    %i{class: "fa fa-edit"}
+                  %md-button{class: "md-icon-button", ng-click: "dashboard.deductions_list(value.id)", aria-label: "deductions list"} 
+                    %i{class: "fa fa-eye"}
+                  %md-button{class: "md-icon-button", ng-click: "dashboard.add_deduction(value.id)", aria-label: "add deduction"} 
+                    %i{class: "fa fa-usd"}
+                  %md-button{class: "md-icon-button", ng-click: "dashboard.remove_record(value.id, $event)", aria-label: "remove"} 
+                    %i{class: "fa fa-trash-o"}
+      %md-card-footer
+        .footer-wrap{layout:"row", layout-align: "space-between center"}
+          %md-button{class: "md-raised md-primary", ng-click: "dashboard.add_record()"} Добавить месяц
+          %dir-pagination-controls{template-url: "app/components/pagination/pagination.html"}

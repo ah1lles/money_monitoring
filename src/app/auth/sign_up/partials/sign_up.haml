@@ -1,0 +1,29 @@
+.auth-wrap{flex layout: "column", layout-align: "center center"}
+  .logo
+    %a{ui-sref: "home"} Money Monitoring
+  %h2{class: "md-display-1"} Регистрация
+  .md-subhead.align-center Введите существующий email адрес.
+  .form-wrap
+    %form{name: "sign_up.signUpForm", ng-submit: "sign_up.registration()"}
+      %md-input-container{class: "md-block"}
+        %label Email
+        %input{required input-errors pattern: "{{sign_up.regExpEmail}}", type: "email", name: "email", ng-model: "sign_up.user.email", autocomplete: "new-email"}
+        %div{ng-messages: "sign_up.signUpForm.email.$error"}
+          %div{ng-message: "pattern"} Не корректный email адрес.
+          %div{ng-message: "email"}
+            %span{ng-bind: "sign_up.errors.errors.email"}
+      %md-input-container{class: "md-block"}
+        %label Пароль
+        %input{required input-errors type: "password", name: "password", ng-model: "sign_up.user.password", minlength: "6", autocomplete: "new-password"}
+        %div{ng-messages: "sign_up.signUpForm.password.$error"}
+          %div{ng-message: "minlength"} Пароль не может быть меньше 6 символов!
+          %div{ng-message: "password"}
+            %span{ng-bind: "sign_up.errors.errors.password"}
+      %md-input-container{class: "md-block"}
+        %label Повторите пароль
+        %input{required confirm-password type: "password", name: "password_confirmation", ng-model: "sign_up.user.password_confirmation", autocomplete: "new-password"}
+        %div{ng-messages: "sign_up.signUpForm.password_confirmation.$error"}
+          %div{ng-message: "password_confirmation"} Должно соответствовать паролю.
+      .button-wrap
+        %md-button{ui-sref: "home", class: "md-raised"} Назад
+        %md-button{type: "submit", class: "md-primary md-raised", ng-disabled: "sign_up.signUpForm.$invalid"} Зарегистрироваться

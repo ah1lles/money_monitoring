@@ -1,0 +1,40 @@
+%md-card{class: "md-whiteframe-2dp"}
+  %md-card-header{layout:"row", layout-align: "space-between center"}
+    .md-headline{flex: "50", ng-bind: "deductions_list.title"}
+    .search-block.filter-marks{flex: "50", layout:"row", layout-align: "space-between center"}
+      %md-input-container{md-no-float flex: "60", class: "md-icon-left md-block"}
+        %md-icon
+          %i{class: "fa fa-search"}
+        %input{type: "text", placeholder: "Поиск", ng-model: "deductions_list.search_term"}
+      .filter-content{flex: "35"}
+        %md-input-container{md-no-float class: "md-block"}
+          %md-select{ng-model: "deductions_list.search_term", placeholder: "Фильтр по меткам"}
+            %md-option{ng-value: "key", ng-repeat: "(key, mark) in deductions_list.marks_list"}
+              %span{ng-bind: "mark.name"}
+          %span{class: "errors-reserve"}
+  %md-card-content.no-padding
+    .table-wrap
+      .main-table
+        .table-head
+          .table-row
+            .table-cell{ng-repeat: "column in deductions_list.columns", data-type: "{{column.type}}"}
+              %span{ng-bind: "column.label"}
+              %span{ng-if: "column.sort", class: "sort_btn", ng-click: "deductions_list.apply_sort(column.name)", ng-class: "{'asc': deductions_list.current_sort.type === 'asc' && deductions_list.current_sort.name === column.name, 'desc': deductions_list.current_sort.type === 'desc' && deductions_list.current_sort.name === column.name}"}
+                %i{class: "fa fa-sort-asc"}
+                %i{class: "fa fa-sort-desc"}
+            .table-cell
+        .table-body
+          .table-row{ng-repeat: "(key, value) in deductions_list.list | orderBy: deductions_list.current_sort.column | filter: deductions_list.search_term"}
+            .table-cell{ng-repeat: "column in deductions_list.columns", data-type: "{{column.type}}"}
+              %span{ng-bind: "(column.name === 'mark' ? (deductions_list.marks_list[value[column.name]].name) : value[column.name]) | dateFilter: column"}
+            .table-cell.action-block
+              %md-button{class: "md-icon-button", ng-click: "deductions_list.edit_deduction(value.id)", aria-label: "edit deduction"} 
+                %i{class: "fa fa-pencil-square-o"}
+              %md-button{class: "md-icon-button", ng-click: "deductions_list.remove_deduction(value.id, $event)", aria-label: "remove deduction"} 
+                %i{class: "fa fa-trash-o"}
+  %md-card-footer
+    .footer-wrap{layout:"row", layout-align: "space-between center"}
+      .button-holder
+        %md-button{class: "md-raised md-primary", ng-click: "deductions_list.add_deduction()", aria-label: "back"} Добавить вычет
+        %md-button{class: "md-raised", ng-click: "deductions_list.back()", aria-label: "back"} Назад
+      %dir-pagination-controls{template-url: "app/components/pagination/pagination.html"}
