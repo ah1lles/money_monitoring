@@ -16,9 +16,11 @@
     vm.marks_list   = [];
     vm.search_term  = '';
     vm.current_mark = null;
+
     vm.current_sort = {
       column: 'created_at'
     };
+
     vm.columns     = [
       {
         name: 'created_at',
@@ -87,6 +89,7 @@
             .title('Удаление вычета')
             .textContent('Вы уверены, что хотите удалить данный вычет?')
             .targetEvent(ev)
+            .clickOutsideToClose(true)
             .ok('Удалить')
             .cancel('Нет');
 
@@ -111,6 +114,8 @@
         var result = [], mark, m, date;
 
         _.each(item, function(value, key) {
+          if (key === '$$hashKey' || key === 'id') return;
+
           if (key === 'mark') {
             mark = params.marksList[value];
             if (mark) {
@@ -124,8 +129,10 @@
             if (~date.indexOf(params.searchTerm))
               result.push(key);
           } else {
-            if (~value.toString().indexOf(params.searchTerm))
+            if (~value.toString().indexOf(params.searchTerm)) {
+                console.log(value, key)
               result.push(key);
+            }
           }
         });
 

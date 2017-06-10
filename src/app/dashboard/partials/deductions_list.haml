@@ -1,17 +1,11 @@
 %md-card{class: "md-whiteframe-2dp"}
   %md-card-header{layout:"row", layout-align: "space-between center"}
-    .md-headline{flex: "50", ng-bind: "deductions_list.title"}
-    .search-block.filter-marks{flex: "50", layout:"row", layout-align: "space-between center"}
-      %md-input-container{md-no-float flex: "60", class: "md-icon-left md-block"}
+    .md-headline{ng-bind: "deductions_list.title"}
+    .search-block
+      %md-input-container{md-no-float class: "md-icon-left md-block"}
         %md-icon
           %i{class: "fa fa-search"}
         %input{type: "text", placeholder: "Поиск", ng-model: "deductions_list.searchParams.searchTerm"}
-      .filter-content{flex: "35"}
-        %md-input-container{md-no-float class: "md-block"}
-          %md-select{ng-model: "deductions_list.search_term", placeholder: "Фильтр по меткам"}
-            %md-option{ng-value: "key", ng-repeat: "(key, mark) in deductions_list.marks_list"}
-              %span{ng-bind: "mark.name"}
-          %span{class: "errors-reserve"}
   %md-card-content.no-padding
     .table-wrap
       .main-table

@@ -46,6 +46,7 @@
             .title('Удаление метки')
             .textContent('Вы уверены, что хотите удалить метку "' + mark.name + '"?')
             .targetEvent(ev)
+            .clickOutsideToClose(true)
             .ok('Удалить')
             .cancel('Нет');
 

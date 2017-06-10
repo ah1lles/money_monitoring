@@ -16,8 +16,14 @@
     vm.list            = [];
     vm.items_per_page  = 12;
     vm.search_term     = '';
+
     vm.current_sort    = {
       column: 'created_at'
+    };
+
+    vm.searchParams = {
+      searchTerm: '',
+      format: 'MMMM YYYY'
     };
 
     vm.columns = [
@@ -57,6 +63,33 @@
         flashMethods.alertError('Извините, произошла ошибка!');
       }
     );
+
+    vm.searchFilter = function(params) {
+      return function(item) {
+        if (!params.searchTerm) return true;
+        var result = [], mark, m, date;
+
+        _.each(item, function(value, key) {
+          if (key === '$$hashKey' || key === 'id') return;
+
+          if (key === 'created_at') {
+            m     = moment(value),
+            date  = m.isValid() ? m.format(params.format) : value;
+
+            if (~date.indexOf(params.searchTerm))
+              result.push(key);
+          } else {
+            if (~value.toString().indexOf(params.searchTerm)) {
+              console.log(value, key)
+              result.push(key);
+              
+            }
+          }
+        });
+
+        return result.length;
+      }
+    }
 
     vm.apply_sort = function(columnName) {
       if (vm.current_sort.name !== columnName)
@@ -101,6 +134,7 @@
             .title('Удаление записи')
             .textContent('Вы уверены, что хотите удалить запись?')
             .targetEvent(ev)
+            .clickOutsideToClose(true)
             .ok('Удалить')
             .cancel('Нет');
 

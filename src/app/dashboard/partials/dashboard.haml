@@ -7,7 +7,7 @@
           %md-input-container{md-no-float class: "md-icon-left md-block"}
             %md-icon
               %i{class: "fa fa-search"}
-            %input{type: "text", placeholder: "Поиск", ng-model: "dashboard.search_term"}
+            %input{type: "text", placeholder: "Поиск", ng-model: "dashboard.searchParams.searchTerm"}
       %md-card-content.no-padding
         .table-wrap
           .main-table
@@ -20,7 +20,7 @@
                     %i{class: "fa fa-sort-desc"}
                 .table-cell
             .table-body
-              .table-row{dir-paginate: "(key, value) in dashboard.list | orderBy: dashboard.current_sort.column | filter: dashboard.search_term | itemsPerPage: dashboard.items_per_page"}
+              .table-row{dir-paginate: "(key, value) in dashboard.list | orderBy: dashboard.current_sort.column | filter: dashboard.searchFilter(dashboard.searchParams) | itemsPerPage: dashboard.items_per_page"}
                 .table-cell{ng-repeat: "column in dashboard.columns", data-type: "{{column.type}}"}
                   %span{ng-bind: "value[column.name] | dateFilter: column"}
                 .table-cell.action-block
