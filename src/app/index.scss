@@ -23,6 +23,18 @@ $fa-font-path: "../../bower_components/font-awesome/fonts";
 }
 
 @font-face {
+  font-family: 'FontAwesome';
+  src: url('../assets/fonts/fontawesome-webfont.eot?v=4.7.0');
+  src: url('../assets/fonts/fontawesome-webfont.eot?#iefix&v=4.7.0') format('embedded-opentype'),
+       url('../assets/fonts/fontawesome-webfont.woff2?v=4.7.0') format('woff2'),
+       url('../assets/fonts/fontawesome-webfont.woff?v=4.7.0') format('woff'),
+       url('../assets/fonts/fontawesome-webfont.ttf?v=4.7.0') format('truetype'),
+       url('../assets/fonts/fontawesome-webfont.svg?v=4.7.0#fontawesomeregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
     font-family: 'Kurale-Regular';
     src: url('../assets/fonts/Kurale-Regular.eot');
     src: url('../assets/fonts/Kurale-Regular.eot') format('embedded-opentype'),
