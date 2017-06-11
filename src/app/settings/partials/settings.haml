@@ -1,0 +1,10 @@
+.view-content
+  %md-card{class: "md-whiteframe-2dp"}
+    %md-card-header
+      .md-headline Основные настройки
+    %md-tabs{class: "md-accent tabs-list", md-selected: "settings.selectedIndex"}
+      %md-tab{ng-repeat: "item in settings.navLinks", label: "{{item.label}}", ui-sref: "{{item.state}}", ui-sref-active: "active"}
+
+    %md-card-content
+      %ui-view
+    %md-card-footer

@@ -46,8 +46,14 @@
         sort: true
       },
       {
+        name: 'residue_from_total',
+        label: 'Остаток',
+        type: 'integer',
+        sort: true
+      },
+      {
         name: 'sum_in_day',
-        label: 'Сумма в день',
+        label: 'Макс. в день',
         type: 'integer'
       }
     ];
@@ -56,7 +62,8 @@
       function(response) {
         vm.list = toArray.create(response);
         vm.list = _.each(vm.list, function(item) {
-          item.sum_amounts = vm.get_sum_amounts(item.deductions);
+          item.sum_amounts            = vm.get_sum_amounts(item.deductions);
+          item.residue_from_total     = item.total - item.sum_amounts;
         });
       },
       function(response) {
@@ -80,7 +87,6 @@
               result.push(key);
           } else {
             if (~value.toString().indexOf(params.searchTerm)) {
-              console.log(value, key)
               result.push(key);
               
             }

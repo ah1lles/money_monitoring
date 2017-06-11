@@ -71,7 +71,7 @@
 
     function datepickerConfig($mdDateLocaleProvider, moment, defaultDateFormat) {
       moment.locale('ru');
-console.log(moment.locale());
+
       $mdDateLocaleProvider.months          = moment.months();
       $mdDateLocaleProvider.shortMonths     = moment.monthsShort();
       $mdDateLocaleProvider.days            = moment.weekdays();

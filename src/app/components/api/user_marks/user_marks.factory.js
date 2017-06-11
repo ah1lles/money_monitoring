@@ -25,7 +25,7 @@
       return DB.remove('users/' + userId + '/marks/' + id);
     }
 
-    userMarks.updateRecord = function(value, id) {
+    userMarks.updateMark = function(id, value) {
       return DB.update('users/' + userId + '/marks/' + id, value);
     }
 

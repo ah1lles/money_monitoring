@@ -1,0 +1,15 @@
+.md-title.mb-30 Метки
+.max-width
+  .md-subhead Список меток
+  .marks-list
+    .mark{layout:"row", layout-align: "space-between center", ng-repeat: "(key, value) in marks.marks_list", ng-click: "marks.choose_mark(key)", ng-class: "{'active': key === marks.current_mark_id}"}
+      %span{ng-bind: "value.name"}
+      %md-button{class: "md-icon-button", ng-click: "marks.remove_mark(key, value, $event)", aria-label: "remove"}
+        %i{class: "fa fa-times"}
+  %form{name: "marks.saveMarkForm", class: "last-item-no-margin", ng-submit: "marks.save_mark()"}
+    %md-input-container{class: "md-block"}
+      %label Название метки
+      %input{required type: "text", ng-model: "marks.mark.name"}
+    .button-holder
+      %md-button{class: "md-raised md-primary", type: "submit", aria-label: "save"} 
+        Сохранить

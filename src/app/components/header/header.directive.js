@@ -18,7 +18,6 @@
         var vm = this;
 
         vm.user_name = appConfig.user.name;
-        console.log(appConfig.user)
       }
     }
   }

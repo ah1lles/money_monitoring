@@ -5,7 +5,7 @@
       %md-input-container{md-no-float class: "md-icon-left md-block"}
         %md-icon
           %i{class: "fa fa-search"}
-        %input{type: "text", placeholder: "Поиск", ng-model: "deductions_list.searchParams.searchTerm"}
+        %input{type: "text", placeholder: "Поиск", ng-model: "deductions_list.searchParams.searchTerm", ng-change: "deductions_list.update_result()"}
   %md-card-content.no-padding
     .table-wrap
       .main-table
@@ -18,14 +18,27 @@
                 %i{class: "fa fa-sort-desc"}
             .table-cell
         .table-body
-          .table-row{ng-repeat: "(key, value) in deductions_list.list | orderBy: deductions_list.current_sort.column | filter: deductions_list.searchFilter(deductions_list.searchParams)"}
+          .table-row{ng-repeat: "(key, value) in deductions_list.list | orderBy: deductions_list.current_sort.column | filter: deductions_list.searchFilter(deductions_list.searchParams) as filtered_list"}
             .table-cell{ng-repeat: "column in deductions_list.columns", data-type: "{{column.type}}"}
               %span{ng-bind: "(column.name === 'mark' ? (deductions_list.marks_list[value[column.name]].name) : value[column.name]) | dateFilter: column"}
             .table-cell.action-block
-              %md-button{class: "md-icon-button", ng-click: "deductions_list.edit_deduction(value.id)", aria-label: "edit deduction"} 
+              %md-button{class: "md-icon-button", ng-click: "deductions_list.edit_deduction(value.id)", aria-label: "edit deduction"}
                 %i{class: "fa fa-pencil-square-o"}
-              %md-button{class: "md-icon-button", ng-click: "deductions_list.remove_deduction(value.id, $event)", aria-label: "remove deduction"} 
+              %md-button{class: "md-icon-button", ng-click: "deductions_list.remove_deduction(value.id, $event)", aria-label: "remove deduction"}
                 %i{class: "fa fa-trash-o"}
+          .table-row.result-row
+            .table-cell
+              Итого
+            .table-cell
+            .table-cell{data-type: "integer"}
+              %span.result-text Общая сумма:
+              %span.font-bold{ng-bind: "deductions_list.record.total"}
+            .table-cell{data-type: "integer"}
+              %span.result-text Всего потрачено:
+              %span.font-bold{ng-bind: "deductions_list.deductions_result"}
+            .table-cell.residue{data-type: "integer"}
+              %span.result-text Остаток:
+              %span.font-bold{ng-bind: "deductions_list.deductions_residue"}
   %md-card-footer
     .footer-wrap{layout:"row", layout-align: "space-between center"}
       .button-holder

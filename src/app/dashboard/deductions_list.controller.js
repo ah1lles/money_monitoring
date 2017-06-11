@@ -5,9 +5,9 @@
     .module('moneyMonitoring')
     .controller('DeductionsListController', DeductionsListController);
 
-  DeductionsListController.$inject = ['$scope', '$state', '$stateParams', '$mdDialog', 'dashboardApi', 'flashMethods', 'userMarks', 'moment',  'toArray', 'defaultDateFormat', '_'];
+  DeductionsListController.$inject = ['$scope', '$state', '$timeout', '$stateParams', '$mdDialog', 'dashboardApi', 'flashMethods', 'userMarks', 'moment',  'toArray', 'defaultDateFormat', '_'];
 
-  function DeductionsListController($scope, $state, $stateParams, $mdDialog, dashboardApi, flashMethods, userMarks, moment, toArray, defaultDateFormat, _) {
+  function DeductionsListController($scope, $state, $timeout, $stateParams, $mdDialog, dashboardApi, flashMethods, userMarks, moment, toArray, defaultDateFormat, _) {
 
     var
       vm = this;
@@ -21,7 +21,7 @@
       column: 'created_at'
     };
 
-    vm.columns     = [
+    vm.columns = [
       {
         name: 'created_at',
         label: 'Дата',
@@ -53,8 +53,13 @@
 
     dashboardApi.getRecord($stateParams.recordId).then(
       function(response) {
-        vm.list =  toArray.create(response.deductions);
-        vm.title = 'Список вычетов на ' + response.month;
+        vm.list    = toArray.create(response.deductions);
+        vm.title   = 'Список вычетов на ' + response.month;
+        vm.record  = response || {};
+
+        var amounts = _.pluck(vm.list, 'amount');
+        vm.deductions_result   = _.reduce(amounts, function(memo, num){ return memo + num; }, 0);
+        vm.deductions_residue  = vm.record.total - vm.deductions_result;
       },
       function(response) {
         flashMethods.alertError('Извините, произошла ошибка!');
@@ -70,6 +75,14 @@
         flashMethods.alertError('Извините, произошла ошибка!');
       }
     );
+
+    vm.update_result = function() {
+      $timeout(function() {
+        var amounts = _.pluck($scope.filtered_list, 'amount');
+        vm.deductions_result   = _.reduce(amounts, function(memo, num){ return memo + num; }, 0);
+        vm.deductions_residue  = vm.record.total - vm.deductions_result;
+      }, 0);
+    }
 
     vm.apply_sort = function(columnName) {
       if (vm.current_sort.name !== columnName)
@@ -130,7 +143,6 @@
               result.push(key);
           } else {
             if (~value.toString().indexOf(params.searchTerm)) {
-                console.log(value, key)
               result.push(key);
             }
           }

@@ -98,6 +98,10 @@ body {
   flex-direction: row;
 }
 
+.mb-30 {
+    margin-bottom: 30px;
+}
+
 
 .site-wrapper {
     height: 100%;
@@ -521,13 +525,14 @@ md-dialog {
         display: table-header-group;
 
         .table-row {
-            &:hover {
+            &:not(.result-row):hover {
                 background: transparent;
             }
         }
         .table-cell {
             padding-top: 10px;
             padding-bottom: 10px;
+            font-weight: 600;
         }
     }
     .table-body {
@@ -542,14 +547,15 @@ md-dialog {
         &:last-child {
             border-bottom: 1px solid rgba(216, 216, 216, 0.9);
         }
-        &:hover {
+        &:not(.result-row):hover {
             background: #fafafa;
         }
     }
     .table-cell {
         display: table-cell;
-        padding: 5px 25px;
+        padding: 12px 25px;
         max-width: 500px;
+        line-height: 25px;
 
         .md-icon-button {
 
@@ -564,7 +570,27 @@ md-dialog {
         }
         &.action-block {
             text-align: right;
+
+            .md-button {
+                padding: 0;
+                height: 24px;
+                min-height: 24px;
+                width: 24px;
+            }
         }
+    }
+}
+.result-row {
+    background: #ececec;
+
+    .table-cell:first-child {
+        font-weight: 600;
+    }
+    .font-bold {
+        font-weight: 600;
+    }
+    .result-text {
+        margin-right: 10px;
     }
 }
 .sort_btn {
@@ -686,6 +712,61 @@ md-datepicker {
     margin: 18px 0;
     vertical-align: middle;
 }
+
+
+
+.marks-list {
+    border: 1px solid rgba(0,0,0,0.12);
+    max-height: 300px;
+    overflow-y: auto;
+    margin-bottom: 40px;
+
+    .mark {
+        padding-left: 20px;
+        border-bottom: 1px solid rgba(0,0,0,0.12);
+        cursor: pointer;
+        outline: none;
+
+        .md-button {
+            margin: 0;
+            border-radius: 0;
+
+            &:hover {
+                background: #d4d4d4;
+            }
+        }
+        &:last-child {
+            border-bottom: 0;
+        }
+        &:hover {
+            background: #fafafa;
+        }
+        &.active {
+            background: #e4e4e4;
+        }
+    }
+}
+
+
+md-tabs.tabs-list {
+    padding: 16px;
+
+    md-tabs-wrapper {
+        background: transparent;
+    }
+    md-tab-item.md-tab {
+        color: rgba(0,0,0,0.54) !important;
+
+        &:focus {
+            background: transparent !important;
+        }
+    }
+    .nav-item {
+
+    }
+
+}
+
 
 
 
