@@ -20,9 +20,9 @@
                     %i{class: "fa fa-sort-desc"}
                 .table-cell
             .table-body
-              .table-row{dir-paginate: "(key, value) in dashboard.list | orderBy: dashboard.current_sort.column | filter: dashboard.searchFilter(dashboard.searchParams) | itemsPerPage: dashboard.items_per_page"}
+              .table-row{dir-paginate: "(key, value) in dashboard.list | orderBy: dashboard.current_sort.column | filter: dashboard.searchParams.searchTerm | itemsPerPage: dashboard.items_per_page"}
                 .table-cell{ng-repeat: "column in dashboard.columns", data-type: "{{column.type}}"}
-                  %span{ng-bind: "value[column.name] | dateFilter: column"}
+                  %span{ng-bind: "value[column.name]"}
                 .table-cell.action-block
                   %md-button{class: "md-icon-button", ng-click: "dashboard.edit_record(value.id)", aria-label: "edit record"} 
                     %i{class: "fa fa-edit"}
@@ -32,6 +32,20 @@
                     %i{class: "fa fa-usd"}
                   %md-button{class: "md-icon-button", ng-click: "dashboard.remove_record(value.id, $event)", aria-label: "remove"} 
                     %i{class: "fa fa-trash-o"}
+              .table-row.result-row
+                .table-cell
+                  Итого
+                .table-cell{data-type: "integer"}
+                  %span.result-text Общая сумма:
+                  %span.font-bold{ng-bind: "dashboard.all_record_total"}
+                .table-cell{data-type: "integer"}
+                  %span.result-text Всего потрачено:
+                  %span.font-bold{ng-bind: "dashboard.all_record_result"}
+                .table-cell.residue{data-type: "integer"}
+                  %span.result-text Остаток:
+                  %span.font-bold{ng-bind: "dashboard.all_record_residue"}
+                .table-cell
+                .table-cell
       %md-card-footer
         .footer-wrap{layout:"row", layout-align: "space-between center"}
           %md-button{class: "md-raised md-primary", ng-click: "dashboard.add_record()"} Добавить месяц

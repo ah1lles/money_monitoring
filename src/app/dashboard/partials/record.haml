@@ -14,13 +14,13 @@
           %input{type: "number", ng-model: "record.add_to_total", ng-change: "record.update_total()"}
         %md-input-container{class: "md-block"}
           %label Месяц
-          %md-select{ng-model: "record.new_record.month"}
+          %md-select{ng-model: "record.choosed_month", ng-change: "record.update_created_at()"}
             %md-option{ng-value: "month", ng-repeat: "month in record.months"}
               %span{ng-bind: "month"}
           %span{class: "errors-reserve"}
         %md-input-container{class: "md-block"}
           %label Год
-          %md-select{ng-model: "record.new_record.year"}
+          %md-select{ng-model: "record.choosed_year", ng-change: "record.update_created_at()"}
             %md-option{ng-value: "year", ng-repeat: "year in record.years"}
               %span{ng-bind: "year"}
           %span{class: "errors-reserve"}

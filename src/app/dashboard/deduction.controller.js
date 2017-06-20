@@ -24,7 +24,7 @@
     }
 
     vm.set_deduction_date = function() {
-      vm.deduction.created_at = vm.picker_date.toISOString();
+      vm.deduction.created_at = moment(vm.picker_date).format('DD.MM.YYYY');
     }
 
     if (!$stateParams.deductionId) {
@@ -44,9 +44,9 @@
       dashboardApi.getDeduction($stateParams.recordId, $stateParams.deductionId).then(
         function(response) {
           vm.deduction       = response || {};
-          vm.picker_date     = moment(vm.deduction.created_at)._d;
-          vm.picker_min_date = moment(vm.deduction.created_at).startOf('month')._d;
-          vm.picker_max_date = moment(vm.deduction.created_at).endOf('month')._d;
+          vm.picker_date     = moment(vm.deduction.created_at, 'DD.MM.YYYY')._d;
+          vm.picker_min_date = moment(vm.deduction.created_at, 'DD.MM.YYYY').startOf('month')._d;
+          vm.picker_max_date = moment(vm.deduction.created_at, 'DD.MM.YYYY').endOf('month')._d;
         },
         function(response) {
           flashMethods.alertError('Извините, произошла ошибка!');

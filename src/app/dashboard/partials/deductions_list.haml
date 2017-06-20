@@ -20,7 +20,7 @@
         .table-body
           .table-row{ng-repeat: "(key, value) in deductions_list.list | orderBy: deductions_list.current_sort.column | filter: deductions_list.searchFilter(deductions_list.searchParams) as filtered_list"}
             .table-cell{ng-repeat: "column in deductions_list.columns", data-type: "{{column.type}}"}
-              %span{ng-bind: "(column.name === 'mark' ? (deductions_list.marks_list[value[column.name]].name) : value[column.name]) | dateFilter: column"}
+              %span{ng-bind: "(column.name === 'mark' ? (deductions_list.marks_list[value[column.name]].name) : value[column.name])"}
             .table-cell.action-block
               %md-button{class: "md-icon-button", ng-click: "deductions_list.edit_deduction(value.id)", aria-label: "edit deduction"}
                 %i{class: "fa fa-pencil-square-o"}

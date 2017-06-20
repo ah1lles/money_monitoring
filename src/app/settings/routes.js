@@ -9,6 +9,7 @@
   function routerConfig($stateProvider) {
     $stateProvider
       .state('settings', {
+        abstract: true,
         url: '/settings',
         templateUrl: 'app/settings/partials/settings.html',
         controller: 'SettingsController',

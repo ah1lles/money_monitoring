@@ -135,12 +135,6 @@
               if (~mark.name.toLowerCase().indexOf(params.searchTerm.toLowerCase()))
                 result.push(key);
             }
-          } else if (key === 'created_at') {
-            m     = moment(value),
-            date  = m.isValid() ? m.format(params.format) : value;
-
-            if (~date.indexOf(params.searchTerm))
-              result.push(key);
           } else {
             if (~value.toString().indexOf(params.searchTerm)) {
               result.push(key);

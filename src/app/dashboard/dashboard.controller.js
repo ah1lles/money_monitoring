@@ -28,10 +28,9 @@
 
     vm.columns = [
       {
-        name: 'created_at',
+        name: 'date',
         label: 'Дата',
         type: 'date',
-        format: 'MMMM YYYY'
       },
       {
         name: 'total',
@@ -62,40 +61,18 @@
       function(response) {
         vm.list = toArray.create(response);
         vm.list = _.each(vm.list, function(item) {
-          item.sum_amounts            = vm.get_sum_amounts(item.deductions);
+          item.sum_amounts            = vm.get_sum_amounts(item.deductions, 'amount');
           item.residue_from_total     = item.total - item.sum_amounts;
         });
+
+        vm.all_record_total    = vm.get_sum_amounts(vm.list, 'total');
+        vm.all_record_result   = vm.get_sum_amounts(vm.list, 'sum_amounts');
+        vm.all_record_residue  = vm.get_sum_amounts(vm.list, 'residue_from_total');
       },
       function(response) {
         flashMethods.alertError('Извините, произошла ошибка!');
       }
     );
-
-    vm.searchFilter = function(params) {
-      return function(item) {
-        if (!params.searchTerm) return true;
-        var result = [], mark, m, date;
-
-        _.each(item, function(value, key) {
-          if (key === '$$hashKey' || key === 'id') return;
-
-          if (key === 'created_at') {
-            m     = moment(value),
-            date  = m.isValid() ? m.format(params.format) : value;
-
-            if (~date.indexOf(params.searchTerm))
-              result.push(key);
-          } else {
-            if (~value.toString().indexOf(params.searchTerm)) {
-              result.push(key);
-              
-            }
-          }
-        });
-
-        return result.length;
-      }
-    }
 
     vm.apply_sort = function(columnName) {
       if (vm.current_sort.name !== columnName)
@@ -109,8 +86,8 @@
         vm.current_sort.column = 'created_at';
     }
 
-    vm.get_sum_amounts = function(list) {
-      var keys = _.pluck(list, 'amount');
+    vm.get_sum_amounts = function(list, columnName) {
+      var keys = _.pluck(list, columnName);
       return _.reduce(keys, function(memo, num){ return memo + num; }, 0);
     }
 

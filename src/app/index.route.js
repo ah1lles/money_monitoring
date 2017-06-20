@@ -6,7 +6,7 @@
     .config(routerConfig);
 
   /** @ngInject */
-  function routerConfig($stateProvider, $urlRouterProvider) {
+  function routerConfig($stateProvider, $urlRouterProvider, $locationProvider) {
     $stateProvider
       .state('home', {
         url: '/',
@@ -70,6 +70,8 @@
 
       $state.go(redirect);
     });
+
+    $locationProvider.html5Mode(true);
   }
 
 })();
